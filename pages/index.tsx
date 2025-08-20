@@ -4,7 +4,11 @@ import { GetServerSidePropsContext } from 'next';
 import React from 'react';
 
 const Home = () => {
-  return <LoginPage />;
+  return (
+    <>
+      <LoginPage />
+    </>
+  );
 };
 
 export const getServerSideProps = useServer(
