@@ -20,7 +20,7 @@ const register = async ({
   const newUser = await User.create({
     name,
     email,
-    department,
+    department: department || 'CDC',
     password: hashedPassword,
     role: role || 'faculty',
   });
