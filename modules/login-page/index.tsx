@@ -13,7 +13,6 @@ const LoginPage = () => {
             width={120}
             height={120}
             className='mx-auto'
-            priority
           />
         </div>
 
