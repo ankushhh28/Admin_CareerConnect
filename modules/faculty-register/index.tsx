@@ -14,17 +14,18 @@ const Faculty_Registration_Form = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   // Handle input change
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
+const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const { name, value } = e.target;
+  setFormData({
+    ...formData,
+    [name]: value,
+  });
+};
+
 
   // Handle form submit
-  const handleSubmit = (e) => {
-    e.preventDefault(); 
+const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
 
     if (formData.password.length < 6) {
     alert("Password must be at least 6 characters long");
