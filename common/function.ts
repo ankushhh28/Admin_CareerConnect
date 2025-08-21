@@ -1,7 +1,7 @@
 import { GetServerSidePropsContext } from 'next';
 
 // higher order function for commonize server-side props
-export const useServer = (
+export const server = (
   getData: (context: GetServerSidePropsContext) => Promise<any>
 ) => {
   return async (context: GetServerSidePropsContext) => {

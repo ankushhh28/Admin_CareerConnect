@@ -1,19 +1,17 @@
-import { useServer } from "@/common/hooks";
-import { Button } from "@/components/ui/button";
-import LoginPage from "@/modules/login-page";
-import { GetServerSidePropsContext } from "next";
-import React from "react";
+import { server } from '@/common/function';
+import LoginPage from '@/modules/login-page';
+import { GetServerSidePropsContext } from 'next';
+import React from 'react';
 
 const Home = () => {
   return (
     <>
       <LoginPage />
-    
     </>
   );
 };
 
-export const getServerSideProps = useServer(
+export const getServerSideProps = server(
   async (context: GetServerSidePropsContext) => {
     return {};
   }
