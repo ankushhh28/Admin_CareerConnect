@@ -34,7 +34,7 @@ const LoginPage = () => {
           </h1>
           <p className="text-sm text-gray-500">
             Don’t have an account?{" "}
-            <a href="/register" className="underline hover:text-gray-800">
+            <a href="http://localhost:3000/demo" className="underline hover:text-gray-800">
               Register
             </a>
           </p>
