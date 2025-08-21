@@ -7,18 +7,18 @@ const errorHandler = require('./middlewares/errorHandler.js');
 dotenv.config();
 
 const app = express();
-
 const PORT = process.env.PORT;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-connectDB();
+const startServer = async () => {
+  await connectDB();
+  app.listen(PORT, () => {
+    console.log(`✅ Server Running on port: ${PORT}`);
+    app.use('/', setupRoutes());
+    app.use(errorHandler);
+  });
+};
 
-app.use('/', setupRoutes());
-
-app.use(errorHandler);
-
-app.listen(PORT, () => {
-  console.log(`✅ Server Running in this port : ${PORT}`);
-});
+startServer();
