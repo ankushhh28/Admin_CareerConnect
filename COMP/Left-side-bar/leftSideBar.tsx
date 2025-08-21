@@ -7,6 +7,7 @@ const sidebarLinks = [
   { href: '/dashboard/announcement', label: 'Announcement' },
   { href: '/dashboard/Caf-details', label: 'Caf-Details' },
   { href: '/dashboard/campus-details', label: 'Campus-details' },
+  { href: '/dashboard/add-faculty', label: 'Add-Faculty' },
 ];
 
 export default function Left_Side_Bar({ children }: { children: ReactNode }) {

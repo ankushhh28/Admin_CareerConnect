@@ -3,4 +3,5 @@ export interface facultyRegistrationFormData {
   email: string;
   password: string;
   dept: string;
+  role: string;
 }
