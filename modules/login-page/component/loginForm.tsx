@@ -16,7 +16,7 @@ const LoginForm = () => {
       setFormData({ ...formData, [field]: e.target.value });
     };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log('Login Successful! Welcome,', formData);
   };
