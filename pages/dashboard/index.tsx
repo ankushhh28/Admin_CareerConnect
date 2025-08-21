@@ -1,8 +1,8 @@
-import Dashboard_Page from '@/modules/dashboard'
-import React from 'react'
+import Dashboard_Page from '@/modules/dashboard';
+import React from 'react';
 
 const Dashboard = () => {
-  return <Dashboard_Page/>
-}
+  return <Dashboard_Page />;
+};
 
-export default Dashboard
+export default Dashboard;
