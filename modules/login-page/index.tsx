@@ -1,8 +1,11 @@
+"use client"; // ✅ Needed for Next.js App Router
+
 import React, { useState } from "react";
+import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { FcGoogle } from "react-icons/fc"; // Google icon
-import { Eye, EyeOff } from "lucide-react"; // Eye toggle icons
+import { FcGoogle } from "react-icons/fc";
+import { Eye, EyeOff } from "lucide-react";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -13,7 +16,7 @@ const LoginPage = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Email:", email);
-  console.log("Password:", password);
+    console.log("Password:", password);
     setMessage(`Login Successful! Welcome, ${email}`);
     setTimeout(() => setMessage(""), 3000);
   };
@@ -25,24 +28,33 @@ const LoginPage = () => {
   };
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-white px-4">
-      <div className="w-full max-w-sm space-y-6">
-        {/* Title */}
+    <main className="flex min-h-screen items-center justify-center bg-gray-100 px-4">
+      {/* ✅ Floating Card Container */}
+      <div className="w-full max-w-sm space-y-6 bg-white rounded-2xl shadow-lg p-8 transition-transform transform hover:scale-105 hover:shadow-2xl">
+        {/* ✅ Logo */}
         <div className="text-center">
-          <h1 className="text-lg font-semibold text-gray-900">
-            Welcome to CareerConnect
-          </h1>
-          <p className="text-sm text-gray-500">
+          <Image
+            src="/c2-high-resolution-logo.png" // from public folder
+            alt="Career Connect Logo"
+            width={120}
+            height={120}
+            className="mx-auto"
+            priority
+          />
+          <p className="text-sm text-gray-500 mt-2">
             Don’t have an account?{" "}
-            <a href="http://localhost:3000/demo" className="underline hover:text-gray-800">
+            <a
+              href="/demo"
+              className="underline hover:text-gray-800"
+            >
               Register
             </a>
           </p>
         </div>
 
-        {/* Form */}
+        {/* ✅ Form */}
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Email Field */}
+          {/* Email */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Email
@@ -56,7 +68,7 @@ const LoginPage = () => {
             />
           </div>
 
-          {/* Password Field with Eye Toggle */}
+          {/* Password + Eye Toggle */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Password
@@ -79,7 +91,7 @@ const LoginPage = () => {
             </div>
           </div>
 
-          <Button type="submit" className=" w-60 mx-auto block ">
+          <Button type="submit" className="w-60 mx-auto block">
             Login
           </Button>
         </form>
@@ -91,7 +103,7 @@ const LoginPage = () => {
           <div className="h-px flex-1 bg-gray-300"></div>
         </div>
 
-        {/* Google Button */}
+        {/* Google Login Button */}
         <Button
           type="button"
           onClick={handleGoogleLogin}
