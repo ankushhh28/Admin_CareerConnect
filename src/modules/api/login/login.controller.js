@@ -1,3 +1,4 @@
+const errorDecorator = require('../../../utils/throw-error/errorDecorator');
 const loginService = require('./login.service');
 
 const login = async (req, res, next) => {
@@ -22,11 +23,10 @@ const login = async (req, res, next) => {
     return res.status(200).json({
       success: true,
       message: 'Login successful',
-      id: data.id,
-      role: data.role,
+      data: data.User,
     });
   } catch (err) {
-    next(err);
+    return next(err);
   }
 };
 

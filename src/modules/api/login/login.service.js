@@ -1,18 +1,17 @@
-const { models } = require('../../../model/index');
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
-const boom = require('@hapi/boom');
+const bcrypt = require('bcryptjs');
+const errorDecorator = require('../../../utils/throw-error/errorDecorator');
+const userSchema = require('../../../model/users/userSchema');
 
 const login = async ({ email, password }) => {
-  const { userSchema } = models;
-
   const user = await userSchema.findOne({ email });
   if (!user) {
-    returnboom.unauthorized('Invalid email or password');
+    return errorDecorator(404, 'USER_NOT_FOUND');
   }
 
-  if (!user.password === password) {
-    throw boom.unauthorized('Invalid email or password');
+  const isPasswordValid = await bcrypt.compare(password, user.password);
+  if (!isPasswordValid) {
+    return errorDecorator(401, 'INVALID_PASSWORD');
   }
 
   const accessToken = jwt.sign(
@@ -27,9 +26,14 @@ const login = async ({ email, password }) => {
     { expiresIn: '7d' }
   );
 
+  const User = {
+    id: user._id,
+    name: user.name,
+    role: user.role,
+  };
+
   return {
-    id: user.id,
-    role: user.role || 'admin',
+    User,
     accessToken,
     refreshToken,
   };
