@@ -6,7 +6,7 @@ const LoginPage = () => {
     <main>
       <div className="h-screen bg-primary flex justify-center items-center w-screen">
         <h1 className="text-4xl font-bold">Login Page</h1>
-        <h2>jai Shree ram</h2>
+        <h2>hello</h2>
       </div>
     </main>
   );
