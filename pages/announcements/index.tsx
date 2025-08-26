@@ -7,14 +7,14 @@ const Announcments = () => {
   return <Announcements_Page />;
 };
 
-export const getServerSideProps = server(
-  async (context: GetServerSidePropsContext) => {
-    const { isUser, role } = getTokens(context);
-    if (!isUser || role != "Admin") {
-      return customRedirect("/");
-    }
-    return { props: {} };
-  }
-);
+// export const getServerSideProps = server(
+//   async (context: GetServerSidePropsContext) => {
+//     const { isUser, role } = getTokens(context);
+//     if (!isUser || role != "Admin") {
+//       return customRedirect("/");
+//     }
+//     return { props: {} };
+//   }
+// );
 
 export default Announcments;

@@ -21,8 +21,6 @@ export const apiCall = async ({
     });
     return response.data;
   } catch (error) {
-    if (axios.isAxiosError(error) && error.response) {
-      return error.response.data;
-    }
+    console.log("error", error);
   }
 };
