@@ -1,4 +1,4 @@
-import Faculty_Registration_Form from "@/modules/dashboard/components/faculty-details";
+import Faculty_Registration_Form from "@/modules/faculty-details";
 import React from "react";
 
 const Faculty_Details = () => {

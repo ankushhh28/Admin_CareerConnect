@@ -1,8 +1,8 @@
-import Dashboard_Page from '@/modules/dashboard';
-import React from 'react';
+import Overview_Page from "@/modules/overview";
+import React from "react";
 
 const Dashboard = () => {
-  return <Dashboard_Page />;
+  return <Overview_Page />;
 };
 
 export default Dashboard;

@@ -1,4 +1,4 @@
-import Announcements_Page from "@/modules/dashboard/components/announcement";
+import Announcements_Page from "@/modules/announcement/index";
 import React from "react";
 
 const Announcments = () => {
