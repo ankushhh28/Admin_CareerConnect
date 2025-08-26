@@ -102,13 +102,14 @@ export default function Left_Side_Bar({
       >
         <div className="flex flex-col flex-1 p-4">
           <div className="mb-2 flex mt-3 items-center justify-center md:justify-start">
+            {/* <Image/> */}
             <Home size={24} className="text-white ml-3 flex-shrink-0" />
             <span
               className={`ml-2 font-bold text-xl mt-1 text-white transition-all duration-300 overflow-hidden whitespace-nowrap ${
                 hover ? "opacity-100 w-auto" : "opacity-0 w-0"
               }`}
             >
-              Dashboard
+              Dashboards
             </span>
           </div>
           {/* Divider */}
