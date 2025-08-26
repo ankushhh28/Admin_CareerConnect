@@ -8,10 +8,10 @@ const LoginPage = () => {
       <div className='w-full max-w-sm space-y-6 bg-white rounded-2xl shadow-lg p-8'>
         <div className='text-center'>
           <Image
-            src='/c2-high-resolution-logo.png'
-            alt='Career Connect Logo'
-            width={120}
-            height={120}
+            src='/LogoBlack.png'
+            alt='Career Connect'
+            width={225}
+            height={1}
             className='mx-auto'
           />
         </div>
