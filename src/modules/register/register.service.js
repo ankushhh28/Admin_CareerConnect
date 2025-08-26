@@ -2,13 +2,7 @@ const errorDecorator = require("../../utils/throw-error/errorDecorator.js");
 const User = require("../../model/users/userSchema.js");
 const bcrypt = require("bcryptjs");
 
-const register = async ({
-  name,
-  email,
-  department = "",
-  password,
-  role = "",
-}) => {
+const register = async ({ name, email, department, password, role }) => {
   const user = await User.findOne({ email });
   if (user) {
     throw errorDecorator(400, "EMAIL_ALREADY_EXISTS");
