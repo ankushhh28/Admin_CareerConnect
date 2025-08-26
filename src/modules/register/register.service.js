@@ -1,17 +1,17 @@
-const errorDecorator = require('../../../utils/throw-error/errorDecorator.js');
-const User = require('../../../model/users/userSchema.js');
-const bcrypt = require('bcryptjs');
+const errorDecorator = require("../../utils/throw-error/errorDecorator.js");
+const User = require("../../model/users/userSchema.js");
+const bcrypt = require("bcryptjs");
 
 const register = async ({
   name,
   email,
-  department = '',
+  department = "",
   password,
-  role = '',
+  role = "",
 }) => {
   const user = await User.findOne({ email });
   if (user) {
-    throw errorDecorator(400, 'EMAIL_ALREADY_EXISTS');
+    throw errorDecorator(400, "EMAIL_ALREADY_EXISTS");
   }
 
   const salt = await bcrypt.genSalt(10);
@@ -20,9 +20,9 @@ const register = async ({
   const newUser = await User.create({
     name,
     email,
-    department: department || 'CDC',
+    department: department || "CDC",
     password: hashedPassword,
-    role: role || 'faculty',
+    role: role || "faculty",
   });
 
   return {

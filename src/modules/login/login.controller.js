@@ -1,5 +1,4 @@
-const errorDecorator = require('../../../utils/throw-error/errorDecorator');
-const loginService = require('./login.service');
+const loginService = require("./login.service");
 
 const login = async (req, res, next) => {
   try {
@@ -10,19 +9,19 @@ const login = async (req, res, next) => {
       password,
     });
 
-    res.cookie('accessToken', data.accessToken, {
+    res.cookie("accessToken", data.accessToken, {
       httpOnly: true,
       maxAge: 15 * 60 * 1000,
     });
 
-    res.cookie('refreshToken', data.refreshToken, {
+    res.cookie("refreshToken", data.refreshToken, {
       httpOnly: true,
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
     return res.status(200).json({
       success: true,
-      message: 'Login successful',
+      message: "Login successful",
       data: data.User,
     });
   } catch (err) {

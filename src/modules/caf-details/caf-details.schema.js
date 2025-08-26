@@ -1,0 +1,36 @@
+const Joi = require("joi");
+
+const cafData = Joi.object({
+  name: Joi.string().required(),
+  enrollmentNumber: Joi.string().required(),
+  gender: Joi.string().valid("Male", "Female", "Other").optional(),
+  branch: Joi.string().optional(),
+  emailIdPersonal: Joi.string().email().optional(),
+  emailIdAcropolis: Joi.string().email().optional(),
+  tenthPercent: Joi.number().min(0).max(100).optional().allow(null),
+  tenthPassingYear: Joi.number().optional().allow(null),
+  tenthBoardName: Joi.string().optional().allow(null),
+  diplomaOrTwelth: Joi.string().optional().allow(null),
+  twelthPercent: Joi.number().min(0).max(100).optional().allow(null),
+  twelthPassingYear: Joi.number().optional().allow(null),
+  twelthBoardName: Joi.string().optional().allow(null),
+  diplomaPercent: Joi.number().min(0).max(100).optional().allow(null),
+  diplomaPassingYear: Joi.number().optional().allow(null),
+  diplomaUniversity: Joi.string().optional().allow(null),
+  ugCourse: Joi.string().optional().allow(null),
+  ugPercent: Joi.number().min(0).max(100).optional().allow(null),
+  ugPassingYear: Joi.number().optional().allow(null),
+  firstSemCgpa: Joi.number().min(0).max(10).optional().allow(null),
+  secondSemCgpa: Joi.number().min(0).max(10).optional().allow(null),
+  thirdSemCgpa: Joi.number().min(0).max(10).optional().allow(null),
+  fourthSemCgpa: Joi.number().min(0).max(10).optional().allow(null),
+  fifthSemCgpa: Joi.number().min(0).max(10).optional().allow(null),
+  sixthSemCgpa: Joi.number().min(0).max(10).optional().allow(null),
+  seventhSemCgpa: Joi.number().min(0).max(10).optional().allow(null),
+  eightSemCgpa: Joi.number().min(0).max(10).optional().allow(null),
+  updatedCgpa: Joi.number().min(0).max(10).optional().allow(null),
+  yearGap: Joi.number().min(0).optional().allow(null),
+  careerInterest: Joi.string().optional().allow(null),
+}).required();
+
+module.exports = { cafData };
