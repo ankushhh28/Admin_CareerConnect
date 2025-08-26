@@ -3,36 +3,49 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Menu, X, Home, Bell, Users, Building, UserPlus, LayoutDashboard, GraduationCap, UserCheck, SquareUserRound, Building2 } from "lucide-react";
+import {
+  Menu,
+  X,
+  Home,
+  Bell,
+  Users,
+  Building,
+  UserPlus,
+  LayoutDashboard,
+  GraduationCap,
+  UserCheck,
+  SquareUserRound,
+  Building2,
+} from "lucide-react";
 
 const sidebarLinks = [
   {
-    href: "/dashboard",
+    href: "/overview",
     label: "Overview",
     icon: <LayoutDashboard size={20} />,
   },
   {
-    href: "/dashboard/announcements",
+    href: "/announcements",
     label: "Announcements",
     icon: <Bell size={20} />,
   },
   {
-    href: "/dashboard/student-records",
+    href: "/student-records",
     label: "Students Records",
     icon: <GraduationCap size={20} />,
   },
   {
-    href: "/dashboard/campus-updates",
+    href: "/campus-updates",
     label: "Campus Updates",
     icon: <Building2 size={20} />,
   },
   {
-    href: "/dashboard/student-status",
+    href: "/student-status",
     label: "Student Status",
     icon: <UserCheck size={20} />,
   },
   {
-    href: "/dashboard/faculty-details",
+    href: "/faculty-details",
     label: "Faculty Details",
     icon: <SquareUserRound size={20} />,
   },
@@ -67,6 +80,7 @@ export default function Left_Side_Bar({
     <nav className="flex flex-col gap-2">
       {sidebarLinks.map((link) => {
         const isActive = router.pathname === link.href;
+        console.log(router.pathname);
         return (
           <Link
             key={link.href}
