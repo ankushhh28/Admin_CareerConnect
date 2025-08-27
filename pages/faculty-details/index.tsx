@@ -1,10 +1,10 @@
 import React from "react";
-import Faculty_Registration_Form from "@/modules/faculty-details";
+import Faculty_Details_PAGE from "@/modules/faculty-details";
 import { customRedirect, getTokens, server } from "@/common/function";
 import { GetServerSidePropsContext } from "next";
 
 const Faculty_Details = () => {
-  return <Faculty_Registration_Form />;
+  return <Faculty_Details_PAGE />;
 };
 
 // export const getServerSideProps = server(

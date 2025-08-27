@@ -1,21 +1,38 @@
-
-
 import React, { useState } from "react";
 import { Search } from "lucide-react";
 import Left_Side_Bar from "../../COMP/Left-side-bar/leftSideBar";
+import Table_Strip from "@/COMP/Table-Strip";
 
 interface Student {
   id: number;
   name: string;
-  enroll: string;
+  enrollmentNumber: string;
   branch: string;
   batch: string;
 }
 
 const initialStudents: Student[] = [
-  { id: 1, name: "Anish", enroll: "12345", branch: "IT-A", batch: "2022" },
-  { id: 2, name: "Khushi", enroll: "12346", branch: "CSE-B", batch: "2023" },
-  { id: 3, name: "Ravi", enroll: "12347", branch: "MECH-A", batch: "2022" },
+  {
+    id: 1,
+    name: "Anish",
+    enrollmentNumber: "12345",
+    branch: "IT-A",
+    batch: "2022",
+  },
+  {
+    id: 2,
+    name: "Khushi",
+    enrollmentNumber: "12346",
+    branch: "CSE-B",
+    batch: "2023",
+  },
+  {
+    id: 3,
+    name: "Ravi",
+    enrollmentNumber: "12347",
+    branch: "MECH-A",
+    batch: "2022",
+  },
 ];
 
 const Student_Records_Page = () => {
@@ -24,16 +41,14 @@ const Student_Records_Page = () => {
   const [branchFilter, setBranchFilter] = useState("All");
   const [batchFilter, setBatchFilter] = useState("All");
 
-  const handleViewDetails = (student: Student) => {
-    alert(
-      `Student Details:\n\nName: ${student.name}\nEnroll: ${student.enroll}\nBranch: ${student.branch}\nBatch: ${student.batch}`
-    );
-  };
+  const headers = ["S.No", "Name", "Enrollment No.", "Branch", "Action"];
+  const branches = ["All Branches", "IT-1", "CSE-1", "CSIT-1"];
+  const batches = ["All Batches", "2022", "2023", "2024"];
 
   const filteredStudents = students.filter((student) => {
     const matchesSearch =
       student.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      student.enroll.includes(searchTerm);
+      student.enrollmentNumber.includes(searchTerm);
 
     const matchesBranch =
       branchFilter === "All" || student.branch === branchFilter;
@@ -48,7 +63,7 @@ const Student_Records_Page = () => {
       <div className="p-6 bg-gray-50 min-h-screen">
         {/* Heading */}
         <h1 className="text-3xl font-bold mb-6 text-[#111827]">
-           Student Records
+          Student Records
         </h1>
 
         {/* Filters Row */}
@@ -60,10 +75,11 @@ const Student_Records_Page = () => {
               onChange={(e) => setBatchFilter(e.target.value)}
               className="w-full border rounded-lg px-4 py-2 bg-white shadow-sm focus:ring-2 focus:ring-[#111827] cursor-pointer"
             >
-              <option value="All">All Batches</option>
-              <option value="2022">2022</option>
-              <option value="2023">2023</option>
-              <option value="2024">2024</option>
+              {batches?.map((batch) => (
+                <option key={batch} value={batch}>
+                  {batch}
+                </option>
+              ))}
             </select>
           </div>
 
@@ -72,7 +88,7 @@ const Student_Records_Page = () => {
             <Search className="h-5 w-5 text-gray-400 mr-2" />
             <input
               type="text"
-              placeholder="Search by name or enroll..."
+              placeholder="Search by name or enrollment number..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full outline-none"
@@ -86,46 +102,25 @@ const Student_Records_Page = () => {
               onChange={(e) => setBranchFilter(e.target.value)}
               className="w-full border rounded-lg px-4 py-2 bg-white shadow-sm focus:ring-2 focus:ring-[#111827] cursor-pointer"
             >
-              <option value="All">All Branches</option>
-              <option value="IT-A">IT-A</option>
-              <option value="CSE-B">CSE-B</option>
-              <option value="MECH-A">MECH-A</option>
+              {branches?.map((branch) => (
+                <option value={branch} key={branch}>
+                  {branch}
+                </option>
+              ))}
             </select>
           </div>
         </div>
 
         {/* Card-Style Table */}
         <div className="space-y-0 overflow-x-auto">
-          {/* Header */}
           <div className="grid grid-cols-6 gap-1 px-4 py-3 bg-[#111827] text-white rounded-lg font-semibold ">
-            <div>S.No</div>
-            <div>Name</div>
-            <div>Enroll</div>
-            <div>Branch</div>
-            
-            <div>Action</div>
+            {headers.map((heading) => (
+              <div key={heading}>{heading}</div>
+            ))}
           </div>
 
-          {/* Rows */}
           {filteredStudents.map((student, index) => (
-            <div
-              key={student.id}
-              className="grid grid-cols-6 gap-4 px-4 py-3 bg-white rounded-lg shadow-md hover:shadow-lg transition cursor-pointer border"
-            >
-              <div>{index + 1}</div>
-              <div className="font-medium">{student.name}</div>
-              <div>{student.enroll}</div>
-              <div>{student.branch}</div>
-             
-              <div>
-                <button
-                  onClick={() => handleViewDetails(student)}
-                  className="px-3 py-1 text-sm text-white bg-[#111827] rounded-md hover:bg-[#1f2937] transition"
-                >
-                  View Details
-                </button>
-              </div>
-            </div>
+            <Table_Strip key={index} student={student} index={index} />
           ))}
 
           {filteredStudents.length === 0 && (

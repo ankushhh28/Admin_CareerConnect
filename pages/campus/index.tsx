@@ -1,10 +1,10 @@
 import React from "react";
-import Student_Status_Page from "@/modules/student-status";
+import Campus_Updates_Page from "@/modules/campus/index";
 import { customRedirect, getTokens, server } from "@/common/function";
 import { GetServerSidePropsContext } from "next";
 
-const Student_Status = () => {
-  return <Student_Status_Page />;
+const Campus_Updates = () => {
+  return <Campus_Updates_Page />;
 };
 
 // export const getServerSideProps = server(
@@ -17,4 +17,4 @@ const Student_Status = () => {
 //   }
 // );
 
-export default Student_Status;
+export default Campus_Updates;
