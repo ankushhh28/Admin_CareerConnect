@@ -10,3 +10,11 @@ export interface ComponentData<T1 = any> {
   Image?: any;
   Icon?: any;
 }
+
+export interface ApiOptions {
+  method?: "GET" | "POST" | "PUT" | "DELETE";
+  params?: any;
+  data?: any;
+  headers?: any;
+  path: string;
+}
