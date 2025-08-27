@@ -1,6 +1,7 @@
 import axios from "axios";
 import { ApiOptions } from "./types";
-
+import { connectDB } from "@/lib/db";
+import staticDataSchema from "../lib/staticData-schema";
 export const apiCall = async ({
   method = "GET",
   params,
@@ -22,5 +23,17 @@ export const apiCall = async ({
     return response.data;
   } catch (error) {
     console.log("error", error);
+  }
+};
+
+export const getStaticData = async (collectionName: string) => {
+  await connectDB();
+  try {
+    const data = await staticDataSchema.findOne({
+      UniqueComponentId: collectionName,
+    });
+    return JSON.parse(JSON.stringify(data));
+  } catch (error) {
+    throw error;
   }
 };

@@ -1,4 +1,4 @@
-export interface ComponentData<T1 = any> {
+export interface StaticData<T1 = any> {
   Title?: string;
   SubTitle?: string;
   MetaData?: T1;

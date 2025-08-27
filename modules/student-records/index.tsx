@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { Search } from "lucide-react";
 import Left_Side_Bar from "../../COMP/Left-side-bar/leftSideBar";
 import Table_Strip from "@/COMP/Table-Strip";
+import { StaticData } from "@/common/types";
 
-interface Student {
+export interface Student {
   id: number;
   name: string;
   enrollmentNumber: string;
@@ -35,15 +36,19 @@ const initialStudents: Student[] = [
   },
 ];
 
-const Student_Records_Page = () => {
+const Student_Records_Page = ({
+  Title,
+  MetaData,
+}: {
+  Title: string;
+  MetaData: any;
+}) => {
   const [students] = useState(initialStudents);
   const [searchTerm, setSearchTerm] = useState("");
   const [branchFilter, setBranchFilter] = useState("All");
   const [batchFilter, setBatchFilter] = useState("All");
 
-  const headers = ["S.No", "Name", "Enrollment No.", "Branch", "Action"];
-  const branches = ["All Branches", "IT-1", "CSE-1", "CSIT-1"];
-  const batches = ["All Batches", "2022", "2023", "2024"];
+  const { headers, branches, batches } = MetaData;
 
   const filteredStudents = students.filter((student) => {
     const matchesSearch =
@@ -62,9 +67,7 @@ const Student_Records_Page = () => {
     <Left_Side_Bar>
       <div className="p-6 bg-gray-50 min-h-screen">
         {/* Heading */}
-        <h1 className="text-3xl font-bold mb-6 text-[#111827]">
-          Student Records
-        </h1>
+        <h1 className="text-3xl font-bold mb-6 text-[#111827]">{Title}</h1>
 
         {/* Filters Row */}
         <div className="flex flex-col sm:flex-row justify-between gap-4 mb-6">
@@ -75,7 +78,7 @@ const Student_Records_Page = () => {
               onChange={(e) => setBatchFilter(e.target.value)}
               className="w-full border rounded-lg px-4 py-2 bg-white shadow-sm focus:ring-2 focus:ring-[#111827] cursor-pointer"
             >
-              {batches?.map((batch) => (
+              {batches?.map((batch: any) => (
                 <option key={batch} value={batch}>
                   {batch}
                 </option>
@@ -102,7 +105,7 @@ const Student_Records_Page = () => {
               onChange={(e) => setBranchFilter(e.target.value)}
               className="w-full border rounded-lg px-4 py-2 bg-white shadow-sm focus:ring-2 focus:ring-[#111827] cursor-pointer"
             >
-              {branches?.map((branch) => (
+              {branches?.map((branch: any) => (
                 <option value={branch} key={branch}>
                   {branch}
                 </option>
@@ -114,13 +117,13 @@ const Student_Records_Page = () => {
         {/* Card-Style Table */}
         <div className="space-y-0 overflow-x-auto">
           <div className="grid grid-cols-6 gap-1 px-4 py-3 bg-[#111827] text-white rounded-lg font-semibold ">
-            {headers.map((heading) => (
+            {headers?.map((heading: any) => (
               <div key={heading}>{heading}</div>
             ))}
           </div>
 
           {filteredStudents.map((student, index) => (
-            <Table_Strip key={index} student={student} index={index} />
+            <Table_Strip key={index} data={student} index={index} />
           ))}
 
           {filteredStudents.length === 0 && (
