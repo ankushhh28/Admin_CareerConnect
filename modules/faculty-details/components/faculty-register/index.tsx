@@ -9,14 +9,23 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { facultyRegistrationFormData } from "./types";
+import Custom_Select from "@/COMP/custom-select";
+
+interface facultyRegistrationFormData {
+  name: string;
+  email: string;
+  password: string;
+  dept: string;
+  role: string;
+}
 
 const Faculty_Registration_Form = () => {
+  const [dept, setDept] = useState<string>("");
   const [formData, setFormData] = useState<facultyRegistrationFormData>({
     name: "",
     email: "",
     password: "",
-    dept: "",
+    dept: dept,
     role: "faculty",
   });
 
@@ -30,13 +39,6 @@ const Faculty_Registration_Form = () => {
       });
     };
 
-  const handleDeptChange = (value: string) => {
-    setFormData({
-      ...formData,
-      dept: value,
-    });
-  };
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Faculty Data:", formData);
@@ -48,6 +50,21 @@ const Faculty_Registration_Form = () => {
       role: "faculty",
     });
   };
+
+  const Departments = [
+    "CSE",
+    "IT",
+    "CSE-DS",
+    "CSIT",
+    "AIML",
+    "CSE-CYBER",
+    "ECE",
+    "ME",
+    "Civil",
+    "MBA",
+    "MCA",
+    "FCA",
+  ];
 
   return (
     <div className="flex items-center justify-center h-full bg-gray-50">
@@ -81,28 +98,7 @@ const Faculty_Registration_Form = () => {
           />
         </div>
 
-        <div>
-          <label className="block text-sm font-medium mb-1">Department</label>
-          <Select onValueChange={handleDeptChange} value={formData.dept}>
-            <SelectTrigger>
-              <SelectValue placeholder="Select Department" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="CSE">CSE</SelectItem>
-              <SelectItem value="IT">IT</SelectItem>
-              <SelectItem value="CSE-DS">CSE-DS</SelectItem>
-              <SelectItem value="CSIT">CSIT</SelectItem>
-              <SelectItem value="AIML">AIML</SelectItem>
-              <SelectItem value="CSE-CYBER">CSE-CYBER</SelectItem>
-              <SelectItem value="ECE">ECE</SelectItem>
-              <SelectItem value="ME">ME</SelectItem>
-              <SelectItem value="Civil">Civil</SelectItem>
-              <SelectItem value="MBA">MBA</SelectItem>
-              <SelectItem value="MCA">MCA</SelectItem>
-              <SelectItem value="FCA">FCA</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
+        <Custom_Select filter={dept} data={Departments} setFunction={setDept} />
 
         <div>
           <label className="block text-sm font-medium mb-1">Password</label>

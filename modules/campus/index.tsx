@@ -4,6 +4,7 @@ import Page_Title from "../overview/components/page-title";
 import Custom_Select from "@/COMP/custom-select";
 import Custom_Search from "@/COMP/custom-search";
 import Custom_Table from "@/COMP/custom-table";
+import { StaticData } from "@/common/types";
 
 interface Company {
   Sno: number;
@@ -12,7 +13,9 @@ interface Company {
   domain: string;
 }
 
-const Campus_Updates_Page = () => {
+const Campus_Page = ({ staticData }: { staticData: StaticData }) => {
+  const { Title, MetaData } = staticData;
+  const { tableHeaders, batchOptions } = MetaData;
   const [batch, setBatch] = useState<string>("");
   const [nameFilter, setNameFilter] = useState<string>("");
 
@@ -27,22 +30,13 @@ const Campus_Updates_Page = () => {
     { Sno: 8, name: "Flipkart", Location: "Delhi", domain: "AI-ML" },
   ];
 
-  const tableHeaders = [
-    "S No.",
-    "Company Name",
-    "Location",
-    "Domain",
-    "View Details",
-  ];
-
   const filterCompany = companyDetail.filter((company) =>
     company.name.toLowerCase().includes(nameFilter.toLowerCase())
   );
-  const batchOptions = ["2021", "2022", "2023", "2024"];
   return (
     <Left_Side_Bar>
       <div className="p-5">
-        <Page_Title Title="Campus Details" />
+        <Page_Title Title={Title ?? ""} />
         <div className="flex items-center justify-around mt-6 mb-6">
           <div className="w-1/3">
             <Custom_Select
@@ -72,4 +66,4 @@ const Campus_Updates_Page = () => {
   );
 };
 
-export default Campus_Updates_Page;
+export default Campus_Page;
