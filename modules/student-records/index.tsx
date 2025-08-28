@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Search } from "lucide-react";
 import Left_Side_Bar from "../../COMP/Left-side-bar/leftSideBar";
-import Table_Strip from "@/COMP/Table-Strip";
-import { StaticData } from "@/common/types";
+import Page_Title from "../overview/components/page-title";
+import Custom_Search from "@/COMP/custom-search";
+import Custom_Select from "@/COMP/custom-select";
+import Custom_Table from "@/COMP/custom-table";
 
 export interface Student {
   id: number;
@@ -44,9 +45,9 @@ const Student_Records_Page = ({
   MetaData: any;
 }) => {
   const [students] = useState(initialStudents);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [branchFilter, setBranchFilter] = useState("All");
-  const [batchFilter, setBatchFilter] = useState("All");
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [branchFilter, setBranchFilter] = useState<string>("All");
+  const [batchFilter, setBatchFilter] = useState<string>("All");
 
   const { headers, branches, batches } = MetaData;
 
@@ -66,72 +67,31 @@ const Student_Records_Page = ({
   return (
     <Left_Side_Bar>
       <div className="p-6 bg-gray-50 min-h-screen">
-        {/* Heading */}
-        <h1 className="text-3xl font-bold mb-6 text-[#111827]">{Title}</h1>
-
-        {/* Filters Row */}
+        <Page_Title Title={Title} />
         <div className="flex flex-col sm:flex-row justify-between gap-4 mb-6">
-          {/* Batch Filter */}
-          <div className="w-full sm:w-1/4">
-            <select
-              value={batchFilter}
-              onChange={(e) => setBatchFilter(e.target.value)}
-              className="w-full border rounded-lg px-4 py-2 bg-white shadow-sm focus:ring-2 focus:ring-[#111827] cursor-pointer"
-            >
-              {batches?.map((batch: any) => (
-                <option key={batch} value={batch}>
-                  {batch}
-                </option>
-              ))}
-            </select>
-          </div>
+          <Custom_Select
+            data={batches}
+            filter={batchFilter}
+            setFunction={setBatchFilter}
+          />
+          <Custom_Search
+            placeHolder="Search by name or enrollment number..."
+            setFunction={setSearchTerm}
+            searchTerm={searchTerm}
+          />
 
-          {/* Search */}
-          <div className="flex items-center border rounded-lg px-3 py-2 bg-white shadow-sm w-full sm:w-2/4 focus-within:ring-2 focus-within:ring-[#111827]">
-            <Search className="h-5 w-5 text-gray-400 mr-2" />
-            <input
-              type="text"
-              placeholder="Search by name or enrollment number..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full outline-none"
-            />
-          </div>
-
-          {/* Branch Filter */}
-          <div className="w-full sm:w-1/4">
-            <select
-              value={branchFilter}
-              onChange={(e) => setBranchFilter(e.target.value)}
-              className="w-full border rounded-lg px-4 py-2 bg-white shadow-sm focus:ring-2 focus:ring-[#111827] cursor-pointer"
-            >
-              {branches?.map((branch: any) => (
-                <option value={branch} key={branch}>
-                  {branch}
-                </option>
-              ))}
-            </select>
-          </div>
+          <Custom_Select
+            data={branches}
+            filter={branchFilter}
+            setFunction={setBranchFilter}
+          />
         </div>
 
-        {/* Card-Style Table */}
-        <div className="space-y-0 overflow-x-auto">
-          <div className="grid grid-cols-6 gap-1 px-4 py-3 bg-[#111827] text-white rounded-lg font-semibold ">
-            {headers?.map((heading: any) => (
-              <div key={heading}>{heading}</div>
-            ))}
-          </div>
-
-          {filteredStudents.map((student, index) => (
-            <Table_Strip key={index} data={student} index={index} />
-          ))}
-
-          {filteredStudents.length === 0 && (
-            <div className="text-center py-4 text-gray-500 bg-white rounded-lg shadow">
-              No students found
-            </div>
-          )}
-        </div>
+        <Custom_Table
+          type="student"
+          data={filteredStudents}
+          headers={headers}
+        />
       </div>
     </Left_Side_Bar>
   );

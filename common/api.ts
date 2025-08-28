@@ -26,11 +26,11 @@ export const apiCall = async ({
   }
 };
 
-export const getStaticData = async (collectionName: string) => {
+export const getStaticData = async (UniqueComponentId: string) => {
   await connectDB();
   try {
     const data = await staticDataSchema.findOne({
-      UniqueComponentId: collectionName,
+      UniqueComponentId,
     });
     return JSON.parse(JSON.stringify(data));
   } catch (error) {

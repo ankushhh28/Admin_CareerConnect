@@ -1,6 +1,6 @@
 import React from "react";
 
-interface stripTypes {
+export interface stripTypes {
   id: number;
   name: string;
   enrollmentNumber: string;
@@ -14,16 +14,16 @@ const Table_Strip = ({ data, index }: { data: stripTypes; index: number }) => {
       `Student Details:\n\nName: ${student.name}\nEnroll: ${student.enrollmentNumber}\nBranch: ${student.branch}\nBatch: ${student.batch}`
     );
   };
+
   return (
     <div
       key={data.id}
-      className="grid grid-cols-6 gap-4 px-4 py-3 bg-white rounded-lg shadow-md hover:shadow-lg transition border"
+      className="grid grid-cols-5 gap-4 px-4 py-3 bg-white rounded-lg shadow-md hover:shadow-lg transition border"
     >
       <div>{index + 1}</div>
       <div className="font-medium">{data.name}</div>
       <div>{data.enrollmentNumber}</div>
       <div>{data.branch}</div>
-
       <div>
         <button
           onClick={() => handleViewDetails(data)}
