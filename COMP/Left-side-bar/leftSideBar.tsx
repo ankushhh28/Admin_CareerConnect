@@ -10,7 +10,6 @@ import {
   Bell,
   LayoutDashboard,
   GraduationCap,
-  UserCheck,
   SquareUserRound,
   Building2,
 } from "lucide-react";
@@ -27,19 +26,14 @@ const sidebarLinks = [
     icon: <Bell size={20} />,
   },
   {
-    href: "/student-records",
-    label: "Students Records",
-    icon: <GraduationCap size={20} />,
-  },
-  {
-    href: "/campus-updates",
-    label: "Campus Updates",
+    href: "/campus",
+    label: "Campus",
     icon: <Building2 size={20} />,
   },
   {
-    href: "/student-status",
-    label: "Student Status",
-    icon: <UserCheck size={20} />,
+    href: "/student-records",
+    label: "Students Records",
+    icon: <GraduationCap size={20} />,
   },
   {
     href: "/faculty-details",

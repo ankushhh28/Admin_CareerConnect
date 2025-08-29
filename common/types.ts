@@ -1,4 +1,4 @@
-export interface ComponentData<T1 = any> {
+export interface StaticData<T1 = any> {
   Title?: string;
   SubTitle?: string;
   MetaData?: T1;
@@ -9,4 +9,12 @@ export interface ComponentData<T1 = any> {
   SubHeading?: string;
   Image?: any;
   Icon?: any;
+}
+
+export interface ApiOptions {
+  method?: "GET" | "POST" | "PUT" | "DELETE";
+  params?: any;
+  data?: any;
+  headers?: any;
+  path: string;
 }

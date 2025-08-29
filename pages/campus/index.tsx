@@ -1,13 +1,12 @@
 import React from "react";
-import Student_Records_Page from "@/modules/student-records/index";
 import { customRedirect, getTokens, server } from "@/common/function";
 import { GetServerSidePropsContext } from "next";
+import Campus_Page from "@/modules/campus/index";
 import { getStaticData } from "@/common/api";
 import { StaticData } from "@/common/types";
 
-const Student_Records = ({ staticData }: { staticData: StaticData }) => {
-  const { Title = "", MetaData = {} } = staticData;
-  return <Student_Records_Page Title={Title} MetaData={MetaData} />;
+const Campus_Updates = ({ staticData }: { staticData: StaticData }) => {
+  return <Campus_Page staticData={staticData} />;
 };
 
 export const getServerSideProps = server(
@@ -16,9 +15,9 @@ export const getServerSideProps = server(
     // if (!isUser || role != "Admin") {
     //   return customRedirect("/");
     // }
-    const staticData = await getStaticData("student-record");
+    const staticData = await getStaticData("campus");
     return { props: { staticData } };
   }
 );
 
-export default Student_Records;
+export default Campus_Updates;
